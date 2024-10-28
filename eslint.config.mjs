@@ -1,20 +1,25 @@
 import globals from "globals";
 import stylisticJs from '@stylistic/eslint-plugin-js'
 import js from '@eslint/js'
+import eslintPluginReact from 'eslint-plugin-react'
+import eslintPluginReactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   js.configs.recommended,
   {
     files: ["**/*.js"],
     languageOptions: {
-      sourceType: "commonjs",
+      sourceType: "module",
       globals: {
         ...globals.node,
+        ...globals.browser,
       },
       ecmaVersion: "latest",
     },
     plugins: {
-      '@stylistic/js': stylisticJs
+      '@stylistic/js': stylisticJs,
+      react: eslintPluginReact,
+      'react-refresh': eslintPluginReactRefresh,      
     },
     rules: {
       '@stylistic/js/indent': [
@@ -42,9 +47,14 @@ export default [
         'error', { 'before': true, 'after': true },
       ],
       'no-console': 'off',
+      'react/jsx-no-target-blank': 'off',
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
   { 
-    ignores: ["dist/**", "build/**"],
+    ignores: ['**/dist/*', '**/build/*'],
   },
 ]

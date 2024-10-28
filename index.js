@@ -103,7 +103,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 })
 
 app.get('/version', (req, res) => {
-  res.send('2')
+  res.send('3')
 })
 
 const errorHandler = (error, request, response, next) => {

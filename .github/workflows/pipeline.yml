@@ -24,8 +24,8 @@ jobs:
       - name: Check style
         run: npm run lint
       - name: Production build
-        run: |
-          rm -rf dist
-          cd frontend
-          npm run build
-          cp -r dist ..
+        run: npm run build:ui
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run e2e tests
+        run: npm run test:e2e
